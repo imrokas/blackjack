@@ -41,8 +41,9 @@ class window.Hand extends Backbone.Collection
           return @minScore()
     first = @scores()[0]
     second = @scores()[1]
-    if first in [17..21]
+    optimalScore = [17..21]
+    if first in optimalScore
       return first
-    if second in [17..21]
+    if second in optimalScore
       return second
     return first
