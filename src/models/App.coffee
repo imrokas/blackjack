@@ -27,6 +27,16 @@ class window.App extends Backbone.Model
     return;
 
   winner: ->
-  	
+  	if @get('playerHand').bestScore() > 21
+  		alert "BUST! You lost!"
+  	else if @get('dealerHand').bestScore() > 21
+  		alert "You won! Dealer burned!"
+  	else if @get('playerHand').bestScore()  > @get('dealerHand').bestScore()
+  		alert 'Congratulations! You won!'
+  	else if @get('playerHand').bestScore() < @get('dealerHand').bestScore()
+  		alert 'Dealer won.'
+  	else 
+  		alert "It's a tie!"
+  	return
 
 		

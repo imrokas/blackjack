@@ -28,6 +28,21 @@ class window.Hand extends Backbone.Collection
     [@minScore(), @minScore() + 10 * @hasAce()]
 
   more: ->
-    if @isDealer and (@scores()[0]  < 17 or @scores()[1]  < 17)
+    first = @scores()[0]
+    second = @scores()[1]
+    limit = [17..21]
+    if first  < 17 and second not in limit
       return true
     false
+
+  bestScore: ->
+    if not @deck .at 0
+        .get 'revealed'
+          return @minScore()
+    first = @scores()[0]
+    second = @scores()[1]
+    if first in [17..21]
+      return first
+    if second in [17..21]
+      return second
+    return first
